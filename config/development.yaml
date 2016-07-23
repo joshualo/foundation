@@ -1,0 +1,60 @@
+##
+# development.yaml
+# develment config values
+#
+# secrets and credentials should not be commited to git.  set these values to undefined to require
+# their definitions from ENV variables.
+#
+
+##
+# configuration required for the express app
+#
+app:
+  # the port the app should listen to (integer)
+  port: 8080
+
+##
+# configuration required for mongodb
+#
+mongoDB:
+  # url of mongodb database (string)
+  location: 'mongodb://localhost/dinguscast'   
+
+##
+# configuration required for the logger module
+#
+logger:
+  # mongodb transport
+  mongoDB:
+    # if mongoDB transport is enabled (bool)
+    enabled: false
+  # daily-rotate-file transport
+  dailyRotateFile:
+    # if winston-daily-rotate-file transport is enabled (bool)
+    enabled: false
+    # maximum file size before creating a new file in bytes (integer)
+    maxFileSize: null
+    # maximum number of files before deleting the oldest (integer)
+    maxFiles: null
+    # directory location to save logs (string)
+    logDirectory: '/var/log/foundation' 
+
+##
+# configuration required for auth management
+#
+auth:
+  # Secret used to encrypt json web token (string)
+  secret: undefined
+  # how long the token will be valid in sec (integer)
+  expiresIn: 86400
+
+##
+# configuration required for the email module
+#
+mailer:
+  # if mailer is enabled (bool)
+  enabled: false
+  # email account to send emails from (string)
+  email: null
+  # email account password (string)
+  password: null

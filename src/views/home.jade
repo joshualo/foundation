@@ -1,0 +1,115 @@
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(rel='icon', href='../../favicon.ico')
+    title Foundation - Hello World!
+    // Bootstrap core CSS
+    link(href='public/css/bootstrap.css', rel='stylesheet')
+  body
+    .container
+      .page-header
+        h1 Foundation - Hello World!
+        p.lead
+          | This is a test page that demo's basic features that can be useful to start any project
+      .row
+        .col-md-12
+          h3 Current Access Token
+          p#accessToken
+      .row
+        .col-md-6
+          h3 Create User
+          form#createUser(role='form')
+            .form-group
+              label username
+              input.form-control(type='text', name='userName', placeholder='Enter username')
+            .form-group
+              label password
+              input.form-control(type='text', name='password', placeholder='Enter password')
+            .row
+              .col-md-2
+                button.btn.btn-sm.btn-warning(type='submit')
+                  strong Create
+              .col-md-10
+                p#createUserResult
+        .col-md-6
+          h3 Authenticate User
+          form#authUser(role='form')
+            .form-group
+              label username
+              input.form-control(type='text', name='userName', placeholder='Enter username')
+            .form-group
+              label password
+              input.form-control(type='text', name='password', placeholder='Enter password')
+            .row
+              .col-md-2
+                button.btn.btn-sm.btn-warning(type='submit')
+                  strong Submit
+              .col-md-10
+                p#authUserResult
+script(src='public/js/jquery.min.js')
+script(src='public/js/bootstrap.js')
+script.
+  $(document).ready(() => {
+    clearResults();
+
+    $('#createUser').submit(event => {
+      clearResults();
+
+      var formData = {
+        'userName': $('#createUser input[name=userName]').val(),
+        'password': $('#createUser input[name=password]').val()
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '/api/users',
+        data: formData,
+        dataType: 'json',
+        encode: true
+      }).done(data => {
+        $( "#createUserResult" ).text('success = ' + data.success)
+        refreshAccessToken();
+      });
+
+      event.preventDefault();
+    });
+
+    $('#authUser').submit(event => {
+      clearResults();
+
+      var formData = {
+        'userName': $('#authUser input[name=userName]').val(),
+        'password': $('#authUser input[name=password]').val()
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '/api/authenticate',
+        data: formData,
+        dataType: 'json',
+        encode: true
+      }).done(data => {
+        localStorage.token = data.token;
+
+        $( "#authUserResult" ).text('success = ' + data.success)
+        refreshAccessToken();
+      });
+
+      event.preventDefault();
+    });
+
+    function clearResults() {
+      $( "#createUserResult" ).text('')
+      $( "#authUserResult" ).text('')
+      refreshAccessToken();
+    }
+
+    function refreshAccessToken() {
+      $( "#accessToken" ).text(localStorage.token)
+    }
+  });

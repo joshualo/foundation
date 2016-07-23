@@ -1,0 +1,33 @@
+##
+# custom-environment-variables.json
+# configs from custom environment variables
+#
+
+##
+# configuration required for the express app
+#
+app:
+  port: 'PORT'
+
+##
+# configuration required for mongodb
+#
+mongoDB:
+  # url of mongodb database (string)
+  location: 'MONGO_LOCATION'
+
+##
+# configuration required for session management
+#
+auth:
+  # Secret used to encrypt session cookies (string)
+  secret: 'SESSION_SECRET'
+
+##
+# configuration required for the email module
+#
+mailer:
+  # email account to send emails from (string)
+  email: 'EMAIL_USER'
+  # email account password (string)
+  password: 'EMAIL_PASSWORD'

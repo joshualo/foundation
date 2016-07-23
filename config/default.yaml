@@ -1,0 +1,57 @@
+##
+# default.yaml
+# template for required config values
+#
+
+##
+# configuration required for the express app
+#
+app:
+  # the port the app should listen to (integer)
+  port: undefined
+
+##
+# configuration required for mongodb
+#
+mongoDB:
+  # url of mongodb database (string)
+  location: undefined 
+
+##
+# configuration required for the logger module
+#
+logger:
+  # mongodb transport
+  mongoDB:
+    # if mongoDB transport is enabled (bool)
+    enabled: undefined
+  # daily-rotate-file transport
+  dailyRotateFile:
+    # if winston-daily-rotate-file transport is enabled (bool)
+    enabled: undefined
+    # maximum file size before creating a new file in bytes (integer)
+    maxFileSize: undefined
+    # maximum number of files before deleting the oldest (integer)
+    maxFiles: undefined
+    # directory location to save logs (string)
+    logDirectory: undefined 
+
+##
+# configuration required for auth management
+#
+auth:
+  # Secret used to encrypt json web token (string)
+  secret: undefined
+  # how long the token will be valid in sec (integer)
+  expiresIn: undefined
+
+##
+# configuration required for the email module
+#
+mailer:
+  # if mailer is enabled (bool)
+  enabled: undefined
+  # email account to send emails from (string)
+  email: undefined
+  # email account password (string)
+  password: undefined

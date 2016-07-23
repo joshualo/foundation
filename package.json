@@ -1,0 +1,38 @@
+{
+  "name": "foundation-server",
+  "domains": [],
+  "main": "app.js",
+  "bin": {
+    "foundation-server": "./app.js"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "nodemon app.js"
+  },
+  "version": "0.0.0-0",
+  "private": false,
+  "dependencies": {
+    "bcrypt-nodejs": "0.x",
+    "body-parser": "1.x",
+    "config": "1.x",
+    "express": "4.x",
+    "http-errors": "1.x",
+    "jade": "1.x",
+    "js-yaml": "^3.1",
+    "jsonwebtoken": "7.x",
+    "lodash": "4.x",
+    "mongoose": "3.x",
+    "serve-favicon": "2.x",
+    "socket.io": "1.x",
+    "winston": "2.x",
+    "winston-daily-rotate-file": "1.x",
+    "winston-mongodb": "1.x"
+  },
+  "devDependencies": {
+    "nodemon": "1.x",
+    "morgan": "1.x"
+  },
+  "engines": {
+    "node": "4.x"
+  }
+}
